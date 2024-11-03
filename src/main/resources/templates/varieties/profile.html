@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль Сорта</title>
+</head>
+<body>
+<div class="frame">
+    <p th:text="${variety.getNameType()} + ' - название Сорта, ' + ${variety.getYear()} + ' - год высадки, '
+     + ${variety.getQuantity() + '- количество саженцев'}">variety</p>
+
+    <a th:text="${variety.getCreateDate()} + ' - дата создания записи;        '">create</a>
+    <a th:text="${variety.getModifyDate()} + ' - дата последнего внесения изменений в запись'">update</a>
+
+    <br>
+
+    <div th:if="${plantA}">
+        <p th:text="'Сорт является ВИДОМ: ' + ${plantA.getSeedling()}"></p>
+    </div>
+
+    <div th:unless="${plantA}">
+        <p>Этому сорту не назначен ВИД. Кому ВИДУ его назначить?</p>
+        <form th:method="PATCH" th:action="@{/nursery/varieties/{idVariety}/plant(idVariety=${variety.getIdVariety()})}">
+            <label for="class">Выберите ВИД</label>
+            <select th:object="${plant}" th:field="*{idPlant}" id="class">
+                <option th:each="plant : ${plants}" th:value="${plant.getIdPlant()}"
+                        th:text="${plant.getSeedling()}"></option>
+            </select>
+            <input type="submit" class="button" value="Назначить СОРТ"/>
+        </form>
+    </div>
+
+    <form th:method="GET" th:action="@{/nursery/varieties/{idVariety}/edit(idVariety=${variety.getIdVariety()})}">
+        <input type="submit" class="button" value="Редактировать сорт"/>
+    </form>
+    <form th:method="DELETE" th:action="@{/nursery/varieties/{idVariety}(idVariety=${variety.getIdVariety()})}">
+        <input type="submit" class="button" value="Удалить сорт"/>
+    </form>
+    <hr/>
+    <div class="btn-group">
+        <div class="button">
+            <a th:href="@{/nursery/plants}">Все ВИДЫ</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery/varieties}">Все Сорта</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

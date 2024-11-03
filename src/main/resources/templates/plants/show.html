@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Каталог саженцев</title>
+</head>
+<body>
+<div class="main">
+    <b>Вид саженцев и их стоимость</b>
+
+    <div class="list" th:each="plant : ${plants}">
+        <a th:href="@{/nursery/plants/{id}(id=${plant.getIdPlant()})}"
+           th:text="${plant.getSeedling()} + ', ' + ${plant.getPriceSeedling()}">plant</a>
+    </div>
+    <br>
+    <br>
+    <div class="list">
+        <a th:href="@{/nursery/plants/new}"><b>Добавить новый ВИД растения</b></a>
+    </div>
+    <br>
+    <div class="list">
+        <a th:href="@{/nursery}">На главную страницу</a>
+    </div>
+</div>
+</body>
+</html>

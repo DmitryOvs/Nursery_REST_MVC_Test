@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование Сорта</title>
+</head>
+<body>
+<div class="frame">
+    <form th:method="PATCH" th:action="@{/nursery/varieties/{idVariety}(idVariety=${variety.getIdVariety()})}" th:object="${variety}">
+        <label for="title">Введите название Сорта:</label>
+        <input type="text" th:field="*{nameType}" id="title">
+        <div class="error" th:if="${#fields.hasErrors('nameType')}" th:errors="*{nameType}">Name error</div>
+        <br/>
+        <label for="year">Год высадки саженца:</label>
+        <input type="text" th:field="*{year}" id="year">
+        <div class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
+        <br/>
+        <label for="quantity">Введите количество саженцев:</label>
+        <input type="text" th:field="*{quantity}" id="quantity">
+        <div class="error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Hay mush error</div>
+        <br/>
+        <input type="submit" class="button" value="Редактировать">
+    </form>
+    <hr/>
+    <div class="btn-group">
+        <div class="button">
+            <a th:href="@{/nursery/plants}">Все ВИДЫ</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery/varieties}">Все сорта</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

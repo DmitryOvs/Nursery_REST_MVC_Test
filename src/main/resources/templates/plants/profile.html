@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Описание вида саженца</title>
+</head>
+<body>
+<div class="frame">
+    <p th:text="${plant.getSeedling()} + ',  ' + ${plant.getPriceSeedling()}">plant</p>
+    <br>
+    <div th:if="${varieties}">
+        <hr/>
+        <p><b>Саженцы:</b></p>
+        <div th:each="type : ${varieties}">
+            <a th:text="${type.getNameType()} + ', ' + ${type.getYear()} + ' - возраст саженца, ' + ${type.getQuantity()
+             + ' - количество саженцев данного сорта'}">plant</a>
+        </div>
+    </div>
+    <div th:unless="${varieties}">
+        <p>До сих пор еще нет ни одного сорта данного вида</p>
+    </div>
+
+
+
+
+    <br>
+    <hr/>
+    <form th:method="GET" th:action="@{/nursery/plants/{id}/edit(id=${plant.getIdPlant()})}">
+        <input type="submit" class="button" value="Редактировать ВИД"/>
+    </form>
+    <form th:method="DELETE" th:action="@{/nursery/plants/{id}(id=${plant.getIdPlant()})}">
+        <input type="submit" class="button" value="Удалить ВИД"/>
+    </form>
+    <hr/>
+    <div class="btn-group">
+        <div class="button">
+            <a th:href="@{/nursery/plants}">Все ВИДЫ</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery/varieties}">Все СОРТА</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

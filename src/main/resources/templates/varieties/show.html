@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Сорта</title>
+</head>
+<body>
+<div class="main">
+    <div class="list" th:each="variety : ${varieties}">
+        <a th:href="@{/nursery/varieties/{id}(id=${variety.getIdVariety()})}"
+           th:text="${variety.getNameType()} + ', ' + ${variety.getYear()} + ', ' + ${variety.getQuantity()}">variety</a>
+
+    </div>
+    <div class="list">
+        <a th:href="@{/nursery/varieties/new}"><b>Добавить сорт</b></a>
+    </div>
+    <div class="list">
+        <a th:href="@{/nursery/varieties/search}"><b>Найти сорт</b></a>
+    </div>
+    <div class="list">
+        <a th:href="@{/nursery}">На главную страницу</a>
+    </div>
+    <div class="break"></div>
+    <div class="frame queries">
+        <form th:method="GET" th:action="@{/nursery/varieties}">
+            <label for="page">Номер страницы:</label>
+            <input th:type="text" id="page" name="page" th:size="2"/>
+            <br>
+            <label for="varietiesPerPage">Количество сортов на странице:</label>
+            <input th:type="text" id="varietiesPerPage" name="varietiesPerPage" th:size="2"/>
+            <br>
+            <label for="sortNameType">Сортировать по названию сорта:</label>
+            <select th:type="text" id="sortNameType" name="sortNameType">
+                <option disabled selected value>-----</option>
+                <option th:value="true" th:text="Да"></option>
+                <option th:value="false" th:text="Нет"></option>
+            </select>
+            <input type="submit" class="button" value="Разбить на страницы">
+        </form>
+        <hr/>
+        <a style="text-decoration: none"
+           th:href="@{/nursery/varieties}" class="button">Убрать сортировку и разбиение</a>
+    </div>
+</div>
+</body>
+</html>

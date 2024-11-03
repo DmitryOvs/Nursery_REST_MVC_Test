@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Редактирование ВИДА</title>
+</head>
+<body>
+<div class="frame">
+    <form th:method="PATCH" th:action="@{/nursery/plants/{idPlant}(idPlant=${plant.getIdPlant()})}" th:object="${plant}">
+
+        <label for="VID">ВИД саженца:</label>
+        <input type="text" readonly th:field="*{seedling}" id="VID">
+        <br/>
+        <label for="cash">Введите новое значение стоимости саженцев данного ВИДА:</label>
+        <input type="text" th:field="*{priceSeedling}" id="cash">
+        <div class="error" th:if="${#fields.hasErrors('priceSeedling')}" th:errors="*{priceSeedling}">PriceSeedling error</div>
+        <br/>
+        <input type="submit" class="button" value="Редактировать">
+
+    </form>
+
+    <hr/>
+    <div class="btn-group">
+        <div class="button">
+            <a th:href="@{/nursery/plants}">Все виды саженцев</a>
+        </div>
+        <br>
+        <div class="button">
+            <a th:href="@{/nursery/varieties}">Все сорта</a>
+        </div>
+        <br>
+        <div class="button">
+            <a th:href="@{/nursery}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

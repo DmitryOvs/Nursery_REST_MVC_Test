@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый Сорт</title>
+</head>
+<body>
+<div class="frame">
+    <form th:method="POST" th:action="@{/nursery/varieties}" th:object="${variety}">
+        <label for="nameType">Введите название Сорта:</label>
+        <input type="text" th:field="*{nameType}" id="nameType">
+        <div class="error" th:if="${#fields.hasErrors('nameType')}" th:errors="*{nameType}">NameType error</div>
+        <br/>
+        <label for="YYYY">Год высадки саженца:</label>
+        <input type="text" th:field="*{year}" id="YYYY">
+        <div class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
+        <br/>
+        <label for="quantity">Введите количество саженцев:</label>
+        <input type="text" th:field="*{quantity}" id="quantity">
+        <div class="error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Quantity error</div>
+        <br/>
+        <input type="submit" class="button" value="Добавить Сорт">
+    </form>
+    <hr/>
+    <br>
+    <br>
+    <hr>
+    <div class="btn-group">
+        <div class="button">
+            <a th:href="@{/nursery/plants}">Все ВИДЫ</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery/varieties}">Все сорта</a>
+        </div>
+        <div class="button">
+            <a th:href="@{/nursery}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

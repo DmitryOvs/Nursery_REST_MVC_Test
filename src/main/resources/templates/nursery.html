@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Питомник</title>
+</head>
+<body>
+
+<b>Питомник Самохваловичи</b>
+
+<div class="main">
+    <br>
+    <div class="list">
+        <a th:href="@{/nursery/owner}"><b>О питомнике</b></a>
+    </div>
+    <br>
+    <div class="list">
+        <a th:href="@{/nursery/plants}"><b>Каталог растений</b></a>
+    </div>
+    <br>
+    <div class="list">
+        <a th:href="@{/nursery/contact}"><b>Контакты</b></a>
+    </div>
+    <br>
+</div>
+</body>
+</html>

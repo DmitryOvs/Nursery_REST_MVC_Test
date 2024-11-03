@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Добавление новых ВИДОВ</title>
+</head>
+<body>
+<div class="frame">
+    <form th:method="POST" th:action="@{/nursery/plants}" th:object="${plant}">
+
+        <label for="VVV">Выберите ВИД саженца</label>
+        <select th:object="${plant}" th:field="*{seedling}" id="VVV">
+            <option th:each="plantOpt : ${T(by.chukotka.nursery.model.Saplings).values()}"
+                    th:value="${plantOpt}" th:text="${plantOpt}"></option>
+        </select>
+
+        <br>
+        <label for="cash">Введите стоимость одного:</label>
+        <input type="text" th:field="*{priceSeedling}" id="cash">
+        <div class="error" th:if="${#fields.hasErrors('priceSeedling')}" th:errors="*{priceSeedling}">Cash error</div>
+        <br/>
+        <input type="submit" class="button" value="Добавить ВИД">
+    </form>
+    <hr/>
+    <br>
+    <div class="btn-group">
+        <div class="button">
+            <a th:href="@{/nursery/plants}">Все виды саженцев</a>
+        </div>
+        <br>
+        <div class="button">
+            <a th:href="@{/nursery/varieties}">Все сорта</a>
+        </div>
+        <br>
+        <div class="button">
+            <a th:href="@{/nursery}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
